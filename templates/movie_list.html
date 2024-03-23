@@ -1,0 +1,63 @@
+{% extends "index.html" %}
+{% load static %}
+{% load my_custom_tags %}
+{% block ul %}
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="/">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url "tv_list" 1 %}">Tv show</a>
+						</li>
+		<li class="nav-item active">
+								<a class="nav-link" href="{% url "movie_list" 1 %}">Movies</a>
+							</li>
+					</ul>
+					{% endblock ul %}
+{% block content %}
+<section class="w3l-grids">
+    <div class="grids-main py-5">
+        <div class="container py-lg-4">
+            <div class="headerhny-title">
+                <div class="w3l-title-grids">
+                    <div class="headerhny-left">
+                        <h3 class="hny-title">Latest Movies</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="w3l-populohny-grids">
+                {% for movie in movies %}
+                <div class="item vhny-grid">
+                    <div class="box16 mb-0">
+                        <a href="{% url "movie" movie.id 'ch' %}">
+                            <figure>
+                                <img class="img-fluid" src="{{ movie.image }}" alt="">
+                            </figure>
+                            <div class="box-content">
+                                <h3 class="title">{{ movie.title }}</h3>
+                                <h4> <span class="post"><span class="fa fa-clock-o"> </span> {{ movie.year }}
+
+                                    </span>
+
+                                    <span class="post fa fa-heart text-right"></span>
+                                </h4>
+                            </div>
+                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        {% if index != 4 %}
+        <div class="button-center text-center mt-3">
+            <a href="{% url "movie_list" index|increment:1 %}" class="btn view-button">View all <span class="fa fa-angle-double-right ml-2"
+                    aria-hidden="true"></span></a>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,97 @@
+{% extends "index.html" %} {% load static %} {% load my_custom_tags %} {% block content %}
+<section class="w3l-grids">
+  <div class="grids-main py-4">
+    <div class="container py-lg-4">
+      <div style="width: 200px">
+        <img class="img-fluid float-left" src="{{ image }}" alt="" />
+      </div>
+      <div class="show-details">
+        <h1>Serie complet {{ details.title }} {{ details.year }} streaming</h1>
+        <p><strong>Acteur:</strong> {{ details.stars }}</p>
+        <p><strong>Réalisateur:</strong> {{ details.directors }}</p>
+        <p><strong>Pays:</strong> {{ details.countries }}</p>
+        <p><strong>Année:</strong> {{ details.year }}</p>
+        <p><strong>Genre:</strong> {{ details.genre }}</p>
+        <p><strong>Synopsis:</strong> {{ details.description }}</p>
+        <div class="show-ratings">
+          <span>IMDb {{ details.imdb_rating }}</span>
+          <span>⭐ 8.1</span>
+        </div>
+      </div>
+      {% if not stream %}
+      <div class="row">
+          {% if not lang %}
+              {% if fr_lang %}
+                  <div class="col-sm-3 pb-2">
+                      <a
+                      class="btn btn-primary btn-block"
+                      href="{% url "show_season" id 'fr' %}"
+                      >French</a
+                      >
+                  </div>
+              {% endif %}
+              {% if eng_lang %}
+              <div class="col-sm-3 pb-2">
+                  <a
+                  class="btn btn-primary btn-block"
+                  href="{% url "show_season" id 'en' %}"
+                  >English</a
+                  >
+              </div>
+              {% endif %}
+          {% else %}
+              {% if not ep_data %}
+                  {% for s in 0|range:season %}
+                  <div class="col-sm-3 pb-2">
+                      <a
+                      class="btn btn-primary btn-block"
+                      href="{% url "show_ep" id s|increment:1 lang %}"
+                      >Saison {{ s|increment:1 }}</a
+                      >
+                  </div>
+                  {% endfor %}
+              {% else %}
+                    {% for e in 0|range:ep_data %}
+                    <div class="col-sm-3 pb-2">
+                        <a
+                        class="btn btn-primary btn-block"
+                        href="{% url "stream" id season e|increment:1 lang %}"
+                        >Episode {{ e|increment:1 }}</a
+                        >
+                    </div>
+                    {% endfor %}
+              {% endif %}
+          {% endif %}
+      </div>
+      {% else %}
+        {% if lang == 'fr' %}
+        <div class="col-sm-3 pb-2">
+          <a
+          class="btn btn-primary btn-block"
+          href="https://frembed.fun/api/serie.php?id={{ id }}&sa={{season}}&epi={{ep}}" 
+          target="_blank"
+          >Watch Saison{{season}}-EP{{ep}}</a
+          >
+      </div>
+        {% else %}
+          <div class="single mt-4">
+            <iframe src="https://vidsrc.xyz/embed/tv?imdb={{id}}&season={{season}}&episode={{ep}}" width="100%" height="500px"  frameborder="0" allowfullscreen="yes" scrolling="no" style="overflow:hidden;"></iframe>
+        </div>
+      {% endif %}
+        <div class="row">
+          {% if ep > 1 %}
+          <div class="col text-left">
+            <a href="{% url "stream" id season ep|decrement:1 lang %}" class="btn btn-primary">Prev</a>
+          </div>
+          {% endif %}
+          <div class="col text-right">
+            <a href="{% url "stream" id season ep|increment:1 lang %}" class="btn btn-primary">Next</a>
+          </div>
+        </div>
+        
+        
+    {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

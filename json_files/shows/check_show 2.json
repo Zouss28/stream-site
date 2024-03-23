@@ -1,0 +1,55 @@
+{
+  "title": "Masters of the Air",
+  "description": "During World War II, airmen risk their lives with the 100th Bomb Group, a brotherhood forged by courage, loss, and triumph.",
+  "release_date": "2024-01-25",
+  "imdb_id": "tt2640044",
+  "imdb_rating": "7.8",
+  "vote_count": "119",
+  "popularity": "404.32",
+  "youtube_trailer_key": "",
+  "rated": "TV-MA",
+  "runtime": 42,
+  "year_started": 2024,
+  "genres": [
+    "War",
+    "Drama",
+    "History",
+    "Mini-Series"
+  ],
+  "stars": [
+    "Austin Butler",
+    "Callum Turner",
+    "Anthony Boyle",
+    "Nate Mann",
+    "Stephen Campbell Moore",
+    "James Murray",
+    "Laurie Davidson",
+    "Sawyer Spielberg",
+    "Joanna Kulig",
+    "Barry Keoghan",
+    "Ncuti Gatwa",
+    "Nikolai Kinski"
+  ],
+  "creators": [
+    "John Orloff",
+    "Tom Hanks",
+    "Steven Spielberg"
+  ],
+  "countries": [
+    "USA"
+  ],
+  "language": [
+    "en"
+  ],
+  "production_companies": [
+    "Amblin Television",
+    "Playtone",
+    "Apple Studios",
+    "Parliament of Owls"
+  ],
+  "networks": [
+    "Apple TV+"
+  ],
+  "status": "OK",
+  "status_message": "Query was successful"
+}

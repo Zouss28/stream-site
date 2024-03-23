@@ -1,0 +1,61 @@
+{
+  "title": "Halo",
+  "description": "Depicting an epic 26th-century conflict between humanity and an alien threat known as the Covenant, the series weaves deeply drawn personal stories with action, adventure and a richly imagined vision of the future.",
+  "release_date": "2022-03-24",
+  "imdb_id": "tt2934286",
+  "imdb_rating": "8.34",
+  "vote_count": "2305",
+  "popularity": "3041.34",
+  "youtube_trailer_key": "",
+  "rated": "TV-14",
+  "runtime": 42,
+  "year_started": 2022,
+  "genres": [
+    "Action",
+    "Adventure",
+    "Fantasy",
+    "Science-Fiction",
+    "Suspense",
+    "War",
+    "Action & Adventure",
+    "Sci-Fi & Fantasy"
+  ],
+  "stars": [
+    "Pablo Schreiber",
+    "Natascha McElhone",
+    "Joseph Morgan",
+    "Shabana Azmi",
+    "Christina Bennington",
+    "Natasha Culzac",
+    "Olive Gray",
+    "Yerin Ha",
+    "Bentley Kalu",
+    "Kate Kennedy",
+    "Charlie Murphy",
+    "Danny Sapani"
+  ],
+  "creators": [
+    "Kyle Killen",
+    "Steven Kane"
+  ],
+  "countries": [
+    "USA"
+  ],
+  "language": [
+    "en"
+  ],
+  "production_companies": [
+    "Amblin Television",
+    "One Big Picture",
+    "Chapter Eleven",
+    "343 Industries",
+    "Showtime Networks",
+    "David Wiener"
+  ],
+  "networks": [
+    "Paramount+",
+    "Showtime"
+  ],
+  "status": "OK",
+  "status_message": "Query was successful"
+}

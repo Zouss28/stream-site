@@ -1,0 +1,348 @@
+{% load static %}
+<!doctype html>
+<html lang="zxx">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>AfroShowz</title>
+	<!-- Template CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}">
+	<!-- Template CSS -->
+	<link href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap"
+		rel="stylesheet">
+	<!-- Template CSS -->
+</head>
+
+<body>
+	<!-- header -->
+	<header id="site-header" class="w3l-header fixed-top">
+		<!--/nav-->
+		<nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
+			<div class="container">
+				<h1><a class="navbar-brand" href="/"><span class="fa fa-play icon-log"
+							aria-hidden="true"></span>
+						AfroShowz </a></h1>
+				<!-- if logo is image enable this   
+							<a class="navbar-brand" href="#index.html">
+								<img src="{% static 'image-path' %}" alt="Your logo" title="Your logo" style="height:35px;" />
+							</a> -->
+				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<!-- <span class="navbar-toggler-icon"></span> -->
+					<span class="fa icon-expand fa-bars"></span>
+					<span class="fa icon-close fa-times"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					{% block ul %}
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="/">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url "tv_list" 1 %}">Tv show</a>
+						</li>
+		<li class="nav-item">
+								<a class="nav-link" href="{% url "movie_list" 1 %}">Movies</a>
+							</li>
+					</ul>
+					{% endblock ul %}
+
+
+					<!--/search-right-->
+					<!--/search-right-->
+					<div class="search-right">
+						<a href="#search" class="btn search-hny mr-lg-3 mt-lg-0 mt-4" title="search">Search <span
+								class="fa fa-search ml-3" aria-hidden="true"></span></a>
+						<!-- search popup -->
+						<div id="search" class="pop-overlay">
+							<div class="popup">
+								<form action="{% url "search" %}" method="post" class="search-box">
+									{% csrf_token %}
+									<input type="search" placeholder="Search your Keyword" name="search"
+										required="required" autofocus="">
+									<button type="submit" class="btn"><span class="fa fa-search"
+											aria-hidden="true"></span></button>
+								</form>
+								<div class="browse-items">
+									<h3 class="hny-title two mt-md-5 mt-4">Browse all:</h3>
+									<ul class="search-items">
+										<li><a href="{% url "genre" 1 'Action' %}">Action</a></li>
+										<li><a href="{% url "genre" 1 'Drama' %}">Drama</a></li>
+										<li><a href="{% url "genre" 1 'Family' %}">Family</a></li>
+										<li><a href="{% url "genre" 1 'Thriller' %}">Thriller</a></li>
+										<li><a href="{% url "genre" 1 'Comedy' %}">Commedy</a></li>
+										<li><a href="{% url "genre" 1 'Romance' %}">Romantic</a></li>
+										<li><a href="{% url "genre" 1 'Horror' %}">Horror</a></li>
+									</ul>
+								</div>
+							</div>
+							<a class="close" href="#close">×</a>
+						</div>
+						<!-- /search popup -->
+						<!--/search-right-->
+					</div>
+
+
+				</div>
+				<!-- toggle switch for light and dark theme -->
+				<div class="mobile-position">
+					<nav class="navigation">
+						<div class="theme-switch-wrapper">
+							<label class="theme-switch" for="checkbox">
+								<input type="checkbox" id="checkbox">
+								<div class="mode-container">
+									<i class="gg-sun"></i>
+									<i class="gg-moon"></i>
+								</div>
+							</label>
+						</div>
+					</nav>
+				</div>
+				<!-- //toggle switch for light and dark theme -->
+			</div>
+		</nav>
+		<!--//nav-->
+	</header>
+	<!-- //header -->
+	<!--/breadcrumbs -->
+	<div class="w3l-breadcrumbs">
+		<nav id="breadcrumbs" class="breadcrumbs">
+			<div class="container page-wrapper">
+				<a href="/">Home</a>
+			</div>
+		</nav>
+	</div>
+	{% block content %}
+  <!--//breadcrumbs -->
+	<!--/genre -->
+	<!--grids-sec1-->
+	<section class="w3l-grids">
+		<div class="grids-main py-4">
+			<div class="container py-lg-4">
+				<div class="headerhny-title">
+					<h3 class="hny-title">Popular Movies</h3>
+				</div>
+				<div class="owl-four owl-carousel owl-theme">
+					{% for pair in movies  %}
+          <div class="item vhny-grid">
+						<div class="box16 mb-0">
+							<a href="{% url "movie"  pair.0.id 'ch' %}" class="img-hover">
+								<figure>
+									<img class="img-fluid" src="{{ pair.0.image }}" alt="" style="width: 200px; height: auto;">
+
+								</figure>
+								<div class="box-content">
+									<h3 class="title">{{ pair.0.title }}</h3>
+									<h4> <span class="post"><span class="fa fa-clock-o"> </span> {{pair.1.year}}
+
+										</span>
+
+										<span class="post fa fa-heart text-right"></span>
+									</h4>
+								</div>
+								<span class="fa fa-play video-icon" aria-hidden="true"></span>
+							</a>
+						</div>
+						<div class="box16 mt-4">
+							<a href="{% url "movie"  pair.1.id 'ch' %}" class="img-hover">
+								<figure>
+									<img class="img-fluid" src="{{ pair.1.image }}" alt="" style="width: 200px; height: auto;">
+								</figure>
+								<div class="box-content">
+									<h3 class="title">{{ pair.1.title }}</h3>
+									<h4> <span class="post"><span class="fa fa-clock-o"> </span> {{pair.1.year}}
+
+										</span>
+
+										<span class="post fa fa-heart text-right"></span>
+									</h4>
+								</div>
+								<span class="fa fa-play video-icon" aria-hidden="true"></span>
+							</a>
+						</div>
+					</div>
+          {% endfor %}
+
+				</div>
+			</div>
+		</div>
+	</section>
+  <section class="w3l-grids">
+		<div class="grids-main py-4">
+			<div class="container py-lg-4">
+				<div class="headerhny-title">
+					<h3 class="hny-title">Popular Shows</h3>
+				</div>
+				<div class="owl-four owl-carousel owl-theme">
+					{% for pair in series  %}
+          <div class="item vhny-grid">
+						<div class="box16">
+							<a href="{% url "show_language" pair.0.id %}">
+								<figure>
+									<img class="img-fluid" src="{{ pair.0.image }}" alt="" style="width: 200px; height: auto;">
+
+								</figure>
+								<div class="box-content">
+									<h3 class="title">{{ pair.0.title }}</h3>
+									<h4> <span class="post"><span class="fa fa-clock-o"> </span> {{pair.1.year}}
+
+										</span>
+
+										<span class="post fa fa-heart text-right"></span>
+									</h4>
+								</div>
+								<span class="fa fa-play video-icon" aria-hidden="true"></span>
+							</a>
+						</div>
+						<div class="box16 mt-4">
+							<a href="{% url "show_language" pair.1.id %}">
+								<figure>
+									<img class="img-fluid" src="{{ pair.1.image }}" alt="" style="width: 200px; height: auto;">
+								</figure>
+								<div class="box-content">
+									<h3 class="title">{{ pair.1.title }}</h3>
+									<h4> <span class="post"><span class="fa fa-clock-o"> </span> {{pair.1.year}}
+
+										</span>
+
+										<span class="post fa fa-heart text-right"></span>
+									</h4>
+								</div>
+								<span class="fa fa-play video-icon" aria-hidden="true"></span>
+							</a>
+						</div>
+					</div>
+          {% endfor %}
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--//grids-sec1-->
+  {% endblock content %}
+
+
+</body>
+
+</html>
+<script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+<!--/theme-change-->
+<script src="{% static 'assets/js/theme-change.js' %}"></script>
+<!-- //theme-change-->
+<script src="{% static 'assets/js/owl.carousel.js' %}"></script>
+<script>
+	$(document).ready(function () {
+		$('.owl-four').owlCarousel({
+			loop: true,
+			margin: 20,
+			nav: false,
+			responsiveClass: true,
+			autoplay: false,
+			autoplayTimeout: 5000,
+			autoplaySpeed: 1000,
+			autoplayHoverPause: false,
+			responsive: {
+				0: {
+					items: 1,
+					nav: false
+				},
+				480: {
+					items: 2,
+					nav: true
+				},
+				667: {
+					items: 2,
+					nav: true
+				},
+				1000: {
+					items: 2,
+					nav: true
+				}
+			}
+		})
+	})
+</script>
+<script>
+	$(document).ready(function () {
+		$('.owl-two').owlCarousel({
+			loop: true,
+			margin: 40,
+			nav: false,
+			responsiveClass: true,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplaySpeed: 1000,
+			autoplayHoverPause: false,
+			responsive: {
+				0: {
+					items: 1,
+					nav: false
+				},
+				480: {
+					items: 2,
+					nav: true
+				},
+				667: {
+					items: 2,
+					margin: 20,
+					nav: true
+				},
+				1000: {
+					items: 3,
+					nav: true
+				}
+			}
+		})
+	})
+</script>
+<!-- //script -->
+<!-- //script -->
+<!-- script for owlcarousel -->
+<!-- disable body scroll which navbar is in active -->
+<script>
+	$(function () {
+		$('.navbar-toggler').click(function () {
+			$('body').toggleClass('noscroll');
+		})
+	});
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+<!--/MENU-JS-->
+<script>
+	$(window).on("scroll", function () {
+		var scroll = $(window).scrollTop();
+
+		if (scroll >= 80) {
+			$("#site-header").addClass("nav-fixed");
+		} else {
+			$("#site-header").removeClass("nav-fixed");
+		}
+	});
+
+	//Main navigation Active Class Add Remove
+	$(".navbar-toggler").on("click", function () {
+		$("header").toggleClass("active");
+	});
+	$(document).on("ready", function () {
+		if ($(window).width() > 991) {
+			$("header").removeClass("active");
+		}
+		$(window).on("resize", function () {
+			if ($(window).width() > 991) {
+				$("header").removeClass("active");
+			}
+		});
+	});
+</script>
+<!--//MENU-JS-->
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

@@ -1,0 +1,55 @@
+{
+  "title": "Reacher",
+  "description": "Jack Reacher, a veteran military police investigator, has just recently entered civilian life. Reacher is a drifter, carrying no phone and the barest of essentials as he travels the country and explores the nation he once served.",
+  "release_date": "2022-02-03",
+  "imdb_id": "tt9288030",
+  "imdb_rating": "8.105",
+  "vote_count": "1433",
+  "popularity": "458.996",
+  "youtube_trailer_key": "",
+  "rated": "TV-MA",
+  "runtime": 49,
+  "year_started": 2022,
+  "genres": [
+    "Action",
+    "Adventure",
+    "Crime",
+    "Drama",
+    "Thriller",
+    "Mystery"
+  ],
+  "stars": [
+    "Alan Ritchson",
+    "Maria Sten",
+    "Serinda Swan",
+    "Shaun Sipos",
+    "Ferdinand Kingsley",
+    "Robert Patrick",
+    "Malcolm Goodwin",
+    "Willa Fitzgerald",
+    "Chris Webster",
+    "Bruce McGill",
+    "Hugh Thompson"
+  ],
+  "creators": [
+    "Nick Santora"
+  ],
+  "countries": [
+    "USA"
+  ],
+  "language": [
+    "en"
+  ],
+  "production_companies": [
+    "Amazon Studios",
+    "Skydance Television",
+    "Paramount Television Studios",
+    "Paramount Television"
+  ],
+  "networks": [
+    "Prime Video",
+    "Amazon"
+  ],
+  "status": "OK",
+  "status_message": "Query was successful"
+}

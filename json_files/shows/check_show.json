@@ -1,0 +1,53 @@
+{
+  "title": "Avatar: The Last Airbender",
+  "description": "A young boy known as the Avatar must master the four elemental powers to save a world at war — and fight a ruthless enemy bent on stopping him.",
+  "release_date": "2024-02-22",
+  "imdb_id": "tt9018736",
+  "imdb_rating": "8.275",
+  "vote_count": "340",
+  "popularity": "1939.57",
+  "youtube_trailer_key": "",
+  "rated": "TV-PG",
+  "runtime": 42,
+  "year_started": 2024,
+  "genres": [
+    "Fantasy",
+    "Science-Fiction",
+    "Action",
+    "Adventure",
+    "Drama",
+    "Comedy",
+    "Mystery"
+  ],
+  "stars": [
+    "Gordon Cormier",
+    "Kiawentiio",
+    "Ian Ousley",
+    "Dallas Liu",
+    "Ken Leung",
+    "Paul Sun-Hyung Lee",
+    "Daniel Dae Kim",
+    "Elizabeth Yu",
+    "Lim Kay Siu",
+    "Tamlyn Tomita"
+  ],
+  "creators": [
+    "Albert Kim"
+  ],
+  "countries": [
+    "USA"
+  ],
+  "language": [
+    "en"
+  ],
+  "production_companies": [
+    "Nickelodeon Productions",
+    "Rideback",
+    "Albert Kim Pictures"
+  ],
+  "networks": [
+    "Netflix"
+  ],
+  "status": "OK",
+  "status_message": "Query was successful"
+}

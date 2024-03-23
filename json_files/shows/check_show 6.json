@@ -1,0 +1,46 @@
+{
+  "title": "Star Wars: The Bad Batch",
+  "description": "The 'Bad Batch' of elite and experimental clones make their way through an ever-changing galaxy in the immediate aftermath of the Clone Wars.",
+  "release_date": "2021-05-04",
+  "imdb_id": "tt12708542",
+  "imdb_rating": "8.236",
+  "vote_count": "859",
+  "popularity": "511.169",
+  "youtube_trailer_key": "",
+  "rated": "TV-PG",
+  "runtime": 42,
+  "year_started": 2021,
+  "genres": [
+    "Animation",
+    "Action",
+    "Adventure",
+    "Fantasy",
+    "Science-Fiction",
+    "Drama"
+  ],
+  "stars": [
+    "Dee Bradley Baker",
+    "Michelle Ang",
+    "Stephen Stanton",
+    "Ming-Na Wen",
+    "Andrew Kishino"
+  ],
+  "creators": [
+    "Dave Filoni"
+  ],
+  "countries": [
+    "USA"
+  ],
+  "language": [
+    "en"
+  ],
+  "production_companies": [
+    "Lucasfilm Animation",
+    "Lucasfilm Ltd."
+  ],
+  "networks": [
+    "Disney+"
+  ],
+  "status": "OK",
+  "status_message": "Query was successful"
+}

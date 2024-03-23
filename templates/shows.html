@@ -1,0 +1,65 @@
+{% extends "index.html" %} {% load static %} {% load my_custom_tags %} {% block content %}
+<section class="w3l-grids">
+  <div class="grids-main py-4">
+    <div class="container py-lg-4">
+      <div style="width: 200px">
+        <img class="img-fluid float-left" src="{{ image }}" alt="" />
+      </div>
+      <div class="show-details">
+        <h1>Serie complet {{ details.title }} {{ details.year }} streaming</h1>
+        <p><strong>Acteur:</strong> {{ details.stars }}</p>
+        <p><strong>Réalisateur:</strong> {{ details.directors }}</p>
+        <p><strong>Pays:</strong> {{ details.countries }}</p>
+        <p><strong>Année:</strong> {{ details.year }}</p>
+        <p><strong>Genre:</strong> {{ details.genre }}</p>
+        <p><strong>Synopsis:</strong> {{ details.description }}</p>
+        <div class="show-ratings">
+          <span>IMDb {{ details.imdb_rating }}</span>
+          <span>⭐ 8.1</span>
+        </div>
+      </div>
+      {% if not stream %}
+      <div class="row">
+        {% if not ep_data %}
+            {% for s in season %}
+            <div class="col-sm-3 pb-2">
+                <a
+                class="btn btn-primary btn-block"
+                href="{% url "show_ep" id s.season_number %}"
+                >Saison {{ s.season_number }}</a
+                >
+            </div>
+            {% endfor %}
+            {% else %}
+            {% for e in ep_data.tv_episodes %}
+            <div class="col-sm-3 pb-2">
+                <a
+                class="btn btn-primary btn-block"
+                href="{% url "stream" ep_data.imdb_id season e.episode_number %}"
+                >Episode {{ e.episode_number }}</a
+                >
+            </div>
+            {% endfor %}
+        {% endif %}
+  </div>
+  {% else %}
+        <div class="single mt-4">
+            <iframe src="https://frembed.fun/api/serie.php?id={{id}}&sa={{season}}&epi={{ep}}" width="100%" height="500px"  frameborder="0" allowfullscreen="yes" scrolling="no" style="overflow:hidden;"></iframe>
+        </div>
+        <div class="row">
+          {% if ep > 1 %}
+          <div class="col text-left">
+            <a href="{% url "stream" id season ep|decrement:1 %}" class="btn btn-primary">Prev</a>
+          </div>
+          {% endif %}
+          <div class="col text-right">
+            <a href="{% url "stream" id season ep|increment:1 %}" class="btn btn-primary">Next</a>
+          </div>
+        </div>
+        
+        
+    {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

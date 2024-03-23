@@ -1,0 +1,60 @@
+{
+  "title": "Mr. & Mrs. Smith",
+  "description": "Meet the Smiths: two lonely strangers, John and Jane, who have given up their lives and identities to be thrown together as partners – both in espionage and in marriage",
+  "release_date": "2024-02-01",
+  "imdb_id": "tt14044212",
+  "imdb_rating": "6.3",
+  "vote_count": "109",
+  "popularity": "147.993",
+  "youtube_trailer_key": "",
+  "rated": "TV-MA",
+  "runtime": 42,
+  "year_started": 2024,
+  "genres": [
+    "Action",
+    "Adventure",
+    "Comedy",
+    "Drama",
+    "Crime",
+    "Thriller"
+  ],
+  "stars": [
+    "Donald Glover",
+    "Maya Erskine",
+    "Parker Posey",
+    "Beverly Glover",
+    "Wagner Moura",
+    "Alexander Skarsgård",
+    "Ron Perlman",
+    "Sharon Horgan",
+    "Dave Attell",
+    "Moise Morancy",
+    "Paul Dano",
+    "John Turturro"
+  ],
+  "creators": [
+    "Donald Glover",
+    "Francesca Sloane"
+  ],
+  "countries": [
+    "USA"
+  ],
+  "language": [
+    "en"
+  ],
+  "production_companies": [
+    "New Regency Pictures",
+    "Big Indie Pictures",
+    "Amazon MGM Studios",
+    "Super Frog",
+    "Gilga",
+    "Amazon Studios",
+    "Wells Street Films"
+  ],
+  "networks": [
+    "Prime Video",
+    "Amazon"
+  ],
+  "status": "OK",
+  "status_message": "Query was successful"
+}
