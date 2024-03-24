@@ -17,12 +17,19 @@ CACHE_EXPIRATION = 86400  # 24 hours
 @functools.lru_cache(maxsize=128)
 def get_api_data(func, *args, **kwargs):
     response = func(*args, **kwargs)
+    print(response)
+    return response.json()
+
+@functools.lru_cache(maxsize=128)
+def get_python_api_data(func, *args, **kwargs):
+    response = func(*args, **kwargs)
     return json.loads(response)
 
 @functools.lru_cache(maxsize=128)
 def get_movie_details(movie_id):
     res = imdb.get_by_id(movie_id)
     data = json.loads(res)
+    print(res,movie_id)
     return {
         'title': data.get('name', 'N/A'),
         'description': data.get('description', 'N/A'),
@@ -30,7 +37,8 @@ def get_movie_details(movie_id):
         'imdb_rating': round(float(data.get('rating', {}).get('ratingValue', 0))),
         'genre': ','.join(data.get('genre', ['N/A'])) if isinstance(data.get('genre'), list) else 'N/A',
         'id': movie_id,
-        'directors': "Work on it Later",
+        'actors':data.get('actor',[]),
+        'directors': data.get('director',[]),
         'countries': ','.join(data.get('countries', ['N/A'])),
         'image': data.get('poster')
     }
@@ -46,7 +54,8 @@ def get_show_details(show_id):
         'imdb_rating': round(float(data.get('rating', {}).get('ratingValue', 0))),
         'genre': ','.join(data.get('genre', ['N/A'])) if isinstance(data.get('genre'), list) else 'N/A',
         'id': show_id,
-        'directors': "Work on it Later",
+        'actors':data.get('actor',[]),
+        'directors': data.get('director',[]),
         'countries': ','.join(data.get('countries', ['N/A'])),
         'image': data.get('poster')
     }
@@ -55,7 +64,7 @@ def top_movies():
     cache_key = 'api_top_movies'
     movies = cache.get(cache_key)
     if not movies:
-        res = get_api_data(imdb.popular_movies, genre=None, start_id=1, sort_by=None)
+        res = get_python_api_data(imdb.popular_movies, genre=None, start_id=1, sort_by=None)
         movies = [
             {
                 "id": item.get("id", "N/A"),
@@ -74,7 +83,7 @@ def top_series():
     cache_key = 'api_top_shows'
     series = cache.get(cache_key)
     if not series:
-        res = get_api_data(imdb.popular_tv, genre=None, start_id=1, sort_by=None)
+        res = get_python_api_data(imdb.popular_tv, genre=None, start_id=1, sort_by=None)
         series = [
             {
                 "id": item.get("id", "N/A"),
@@ -125,62 +134,82 @@ def image_show_checkup(show_id):
         image = 'N/A'
     return image
 
-def show_season(show_id):
+
+def show_season(id):
+
     url = "https://movies-tv-shows-database.p.rapidapi.com/"
-    querystring = {"seriesid": show_id}
+
+    querystring = {"seriesid":id}
+
     headers = {
-        "Type": "get-show-seasons",
-        "X-RapidAPI-Key": "6eec8d53cbmsh39a6e3a727c453bp11da8bjsn4944d66ad385",
-        "X-RapidAPI-Host": "movies-tv-shows-database.p.rapidapi.com"
-    }
+	"Type": "get-show-seasons",
+	"X-RapidAPI-Key": "6eec8d53cbmsh39a6e3a727c453bp11da8bjsn4944d66ad385",
+	"X-RapidAPI-Host": "movies-tv-shows-database.p.rapidapi.com"
+}
     try:
-        response = get_api_data(requests.get, url, headers=headers, params=querystring)
-        seasons = response.get('tv_seasons', [])
-    except requests.exceptions.RequestException:
+        response = requests.get(url, headers=headers, params=querystring)
+        
+        data = response.json()
+        seasons = data.get('tv_seasons',[])
+    except requests.exceptions.RequestException as e:
         seasons = []
+        
     return len(seasons)
 
-def show_episode(show_id, season):
+def show_episode(id, season):
+
     url = "https://movies-tv-shows-database.p.rapidapi.com/"
-    querystring = {"seriesid": show_id, "season": season}
+
+    querystring = {"seriesid":id,"season":season}
+
     headers = {
-        "Type": "get-show-season-episodes",
-        "X-RapidAPI-Key": "6eec8d53cbmsh39a6e3a727c453bp11da8bjsn4944d66ad385",
-        "X-RapidAPI-Host": "movies-tv-shows-database.p.rapidapi.com"
-    }
+	"Type": "get-show-season-episodes",
+	"X-RapidAPI-Key": "6eec8d53cbmsh39a6e3a727c453bp11da8bjsn4944d66ad385",
+	"X-RapidAPI-Host": "movies-tv-shows-database.p.rapidapi.com"
+}
     try:
-        response = get_api_data(requests.get, url, headers=headers, params=querystring)
-        episodes = response.get('tv_episodes', [])
-    except requests.exceptions.RequestException:
+        response = requests.get(url, headers=headers, params=querystring)
+        
+        data = response.json()
+        episodes = data.get('tv_episodes',[])
+    except requests.exceptions.RequestException as e:
         episodes = []
+        
     return len(episodes)
 
-def search_checkup(query):
+@functools.lru_cache(maxsize=128)
+def search_chekup(query):
+    query = query.replace(" ", "")
     url = "https://imdb188.p.rapidapi.com/api/v1/searchIMDB"
-    querystring = {"query": query.replace(" ", "")}
+
+    querystring = {"query":query}
+
     headers = {
-        "X-RapidAPI-Key": "cfd592575amsh0e68d98d2898c50p1794e3jsn4872a6b809a5",
-        "X-RapidAPI-Host": "imdb188.p.rapidapi.com"
-    }
+	"X-RapidAPI-Key": "cfd592575amsh0e68d98d2898c50p1794e3jsn4872a6b809a5",
+	"X-RapidAPI-Host": "imdb188.p.rapidapi.com"
+}
     try:
-        response = get_api_data(requests.get, url, headers=headers, params=querystring)
-        search_result = [
-            {
-                "id": item.get("id", "N/A"),
-                "qid": item.get('qid', 'N/A'),
-                "title": item.get("title", "N/A"),
-                "image": item.get("image", {}),
-                "year": item.get("year", {})
-            }
-            for item in response.get('data', [])
-            if item.get('qid') is not None
-        ]
-    except requests.exceptions.RequestException:
+        response = requests.get(url, headers=headers, params=querystring)
+        
+        data = response.json().get('data')
+        search_result = []
+        for item in data:
+            if item.get('qid') is not None :
+                extracted_item = {
+                    "id": item.get("id", "N/A"),
+                    "qid":item.get('qid', 'N/A'),
+                    "title": item.get("title", {}),
+                    "image": item.get("image", {}),
+                    "year":item.get("year",{})
+                }
+                search_result.append(extracted_item)
+                
+    except requests.exceptions.RequestException as e:
         search_result = []
     return search_result
 
 def genre_movies(genre=None):
-    res = get_api_data(imdb.popular_movies, genre=genre, start_id=1, sort_by=None)
+    res = get_python_api_data(imdb.popular_movies, genre=genre, start_id=1, sort_by=None)
     return [
         {
             "id": item.get("id", "N/A"),
@@ -194,7 +223,7 @@ def genre_movies(genre=None):
     ]
 
 def genre_series(genre=None):
-    res = get_api_data(imdb.popular_tv, genre=genre, start_id=1, sort_by=None)
+    res = get_python_api_data(imdb.popular_tv, genre=genre, start_id=1, sort_by=None)
     return [
         {
             "id": item.get("id", "N/A"),

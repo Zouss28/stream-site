@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from .lookup import *
+from .api import *
 from django.core.cache import cache
 from django.views.decorators.csrf import csrf_exempt
 

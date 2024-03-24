@@ -79,7 +79,7 @@ def movie_checkup(id):
             'title':data.get('name', 'N/A'),
             'description':data.get('description','N/A'),
             'year':data.get('datePublished'),
-            'imdb_rating':round(float(data.get('rating','0').get('ratingValue','0'))),
+            'imdb_rating':round(float(data.get('rating',{}).get('ratingValue','0'))),
             'genre':",".join(data.get('genre',['N,A'])) if isinstance(data.get('genre'), list) else 'N/A',
             'id':id,
             'stars':"Work on it Later",

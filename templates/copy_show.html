@@ -7,9 +7,8 @@
       </div>
       <div class="show-details">
         <h1>Serie complet {{ details.title }} {{ details.year }} streaming</h1>
-        <p><strong>Acteur:</strong> {{ details.stars }}</p>
-        <p><strong>Réalisateur:</strong> {{ details.directors }}</p>
-        <p><strong>Pays:</strong> {{ details.countries }}</p>
+        <p><strong>Acteur:</strong> {% for actor in details.actors  %}{{ actor.name }},{% endfor %}</p>
+        <p><strong>Réalisateur:</strong> {% for director in details.directors  %}{{ director.name }},{% endfor %}</p>
         <p><strong>Année:</strong> {{ details.year }}</p>
         <p><strong>Genre:</strong> {{ details.genre }}</p>
         <p><strong>Synopsis:</strong> {{ details.description }}</p>
@@ -18,7 +17,8 @@
           <span>⭐ 8.1</span>
         </div>
       </div>
-      {% if not stream %}
+    </div>
+    {% if not stream %}
       <div class="row">
           {% if not lang %}
               {% if fr_lang %}
@@ -70,13 +70,17 @@
           class="btn btn-primary btn-block"
           href="https://frembed.fun/api/serie.php?id={{ id }}&sa={{season}}&epi={{ep}}" 
           target="_blank"
-          >Watch Saison{{season}}-EP{{ep}}</a
+          >Watch S{{season}}-EP{{ep}}</a
           >
       </div>
         {% else %}
-          <div class="single mt-4">
-            <iframe src="https://vidsrc.xyz/embed/tv?imdb={{id}}&season={{season}}&episode={{ep}}" width="100%" height="500px"  frameborder="0" allowfullscreen="yes" scrolling="no" style="overflow:hidden;"></iframe>
-        </div>
+        <div class="col-sm-3 pb-2">
+          <a
+          class="btn btn-primary btn-block"
+          href="https://vidsrc.xyz/embed/tv?imdb={{id}}&season={{season}}&episode={{ep}}" 
+          target="_blank"
+          >Watch S{{season}}-EP{{ep}}</a
+          >
       {% endif %}
         <div class="row">
           {% if ep > 1 %}
@@ -91,7 +95,6 @@
         
         
     {% endif %}
-    </div>
   </div>
 </section>
 {% endblock content %}

@@ -10,9 +10,8 @@
             </div>
             <div class="movie-details">
                 <h1>Film complet {{ details.title }} streaming</h1>
-                <p><strong>Acteur:</strong> {{ details.stars }}</p>
-                <p><strong>Réalisateur:</strong> {{ details.directors }}</p>
-                <p><strong>Pays:</strong> {{ details.countries }}</p>
+                <p><strong>Acteur:</strong> {% for actor in details.actors  %}{{ actor.name }},{% endfor %}</p>
+                <p><strong>Réalisateur:</strong> {% for director in details.directors  %}{{ director.name }},{% endfor %}</p>
                 <p><strong>Année:</strong> {{ details.year }}</p>
                 <p><strong>Genre:</strong> {{ details.genre }}</p>
                 <p><strong>Synopsis:</strong> {{ details.description }}</p>
@@ -43,17 +42,9 @@
                 </div>
                 {% endif %}
                 {% endif %}
-              </div>
-            {% if lang == 'fr' %}
-            <div class="single mt-4">
-                <iframe src="https://frembed.fun/api/film.php?id={{details.id}}" width="100%" height="500px"  frameborder="0" allowfullscreen="yes" scrolling="no" style="overflow:hidden;"></iframe>
-            </div>
-            {% elif  lang == 'en' %}
-            <div class="single mt-4">
-                <iframe src="https://vidsrc.xyz/embed/movie/{{details.id}}" width="100%" height="500px"  frameborder="0" allowfullscreen="yes" scrolling="no" style="overflow:hidden;"></iframe>
-            </div>
-            {% endif %}    
+            </div>   
         </div>
     </div>
 </section>
 {% endblock content %}
+        
