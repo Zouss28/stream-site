@@ -9,6 +9,7 @@ pillow = "*"
 djangorestframework = "*"
 requests = "*"
 pymoviedb = "*"
+django-on-heroku = "*"
 
 [dev-packages]
 
