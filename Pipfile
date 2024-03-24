@@ -10,7 +10,7 @@ djangorestframework = "*"
 requests = "*"
 pymoviedb = "*"
 django-on-heroku = "*"
-
+typing-extensions = "==4.0.1"
 [dev-packages]
 
 [requires]
