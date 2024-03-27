@@ -87,7 +87,6 @@ def show_list_view(request, index=1):
         'index':int(index)
     })
  
-@csrf_exempt    
 def search_view(request):
     query = request.POST.get('search')
     search_result = search2(query)
