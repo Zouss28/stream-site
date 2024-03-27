@@ -39,6 +39,11 @@
                   >
               </div>
               {% endif %}
+              <div class="col-sm-3 pb-2">
+                {% if not fr_lang and not eng_lang %}
+                  <h1>Coming soon!!!</h1>
+                {% endif %}
+              </div>
           {% else %}
               {% if not ep_data %}
                   {% for s in 0|range:season %}

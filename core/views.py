@@ -8,8 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
-    movies = top_movies()[:6]
-    series = top_series()[:6]
+    movies = top_movies2()[:6]
+    series = top_series2()[:6]
     grouped_movies = [movies[i:i+2] for i in range(0, len(movies), 2)]
     grouped_shows = [series[i:i+2] for i in range(0, len(movies), 2)]
     return render(request, 'index.html', {
@@ -90,20 +90,37 @@ def show_list_view(request, index=1):
 @csrf_exempt    
 def search_view(request):
     query = request.POST.get('search')
-    search_result = search_chekup(query)
+    search_result = search2(query)
     return render(request,'search_list.html',{
         "result":search_result,
     })
     
 def search_genre(request, genre,index=1):
     limit = 6 * int(index)
-    movie_list = genre_movies(genre)[0:limit]
-    show_list = genre_series(genre)[0:limit]
+    movie_list = genre_movies2(movie_genre_list[genre])[0:limit]
+    show_list = genre_series2(show_genre_list[genre])[0:limit]
     result = movie_list + show_list
-    serie = ['tvMiniSeries','tvSeries'] 
     return render(request,'genre_list.html',{
         "result":result,
         'index':int(index),
         'genre':genre,
-        'serie':serie
     })
+    
+movie_genre_list = {
+    'Action':28,
+    'Drama':18,
+    'Family':10751,
+    'Thriller':53,
+    'Comedy':35,
+    'Romance':10749,
+    'Horror':27
+}
+show_genre_list = {
+    'Action':10759,
+    'Drama':18,
+    'Family':10751,
+    'Thriller':9648,
+    'Comedy':35,
+    'Romance':80,
+    'Horror':10768
+}

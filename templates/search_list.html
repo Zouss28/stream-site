@@ -16,7 +16,7 @@
                 {% for item in result %}
                 <div class="item vhny-grid">
                     <div class="box16 mb-0">
-                        <a href="{% if item.qid == 'tvSeries' %}{% url "show_language" item.id %}{% else %}{% url "movie" item.id 'ch' %}{% endif %}">
+                        <a href="{% if item.media == 'tv' %}{% url "show_language" item.id %}{% else %}{% url "movie" item.id 'ch' %}{% endif %}">
                             <figure>
                                 <img class="img-fluid" src="{{ item.image }}" alt="">
                             </figure>

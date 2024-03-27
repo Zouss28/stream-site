@@ -29,7 +29,7 @@
                 {% for item in result %}
                 <div class="item vhny-grid">
                     <div class="box16 mb-0">
-                        <a href="{% if item.type in serie %}{% url "show_language" item.id %}{% else %}{% url "movie" item.id 'ch' %}{% endif %}">
+                        <a href="{% if item.type == 'movie' %}{% url "movie" item.id 'ch' %}{% else %}{% url "show_language" item.id %}{% endif %}">
                             <figure>
                                 <img class="img-fluid" src="{{ item.image }}" alt="">
                             </figure>
