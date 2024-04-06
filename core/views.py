@@ -4,6 +4,8 @@ from django.http import Http404
 from .api import *
 from django.core.cache import cache
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 # Create your views here.
@@ -41,13 +43,13 @@ def show_view(request,id,saison=None,lang=None):
                 saison = french_saison(id)
                         
             else:
-                saison = show_season(id) 
+                saison = details.get('seasons')
         else:
             if lang =='fr':
                 episodes = french_episode(id, saison)
                         
             else:
-                episodes = show_episode(id, saison)
+                episodes = details.get('episodes')
     return render(request,'copy_show.html',{
         'details':details,
         'image':details['image'],
@@ -73,7 +75,7 @@ def stream_show(request,id,saison,ep,lang):
     
 def movie_list_view(request, index=1):
     limit = 12 * int(index)
-    movies = top_movies()[0:limit]
+    movies = top_movies2()[0:limit]
     return render(request,'movie_list.html',{
         'movies':movies,
         'index':int(index)
@@ -81,7 +83,7 @@ def movie_list_view(request, index=1):
     
 def show_list_view(request, index=1):
     limit = 12 * int(index)
-    series = top_series()[0:limit]
+    series = top_series2()[0:limit]
     return render(request,'show_list.html',{
         'series':series,
         'index':int(index)
@@ -124,3 +126,14 @@ show_genre_list = {
     'Romance':80,
     'Horror':10768
 }
+
+@api_view(['GET'])
+def react_index(request):
+    movies = top_movies2()[:6]
+    series = top_series2()[:6]
+    grouped_movies = [movies[i:i+2] for i in range(0, len(movies), 2)]
+    grouped_shows = [series[i:i+2] for i in range(0, len(movies), 2)]
+    return Response({
+        'movies': grouped_movies,
+        'series':grouped_shows,
+    })
