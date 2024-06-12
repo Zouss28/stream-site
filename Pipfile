@@ -11,6 +11,9 @@ requests = "*"
 pymoviedb = "*"
 django-on-heroku = "*"
 typing-extensions = "==4.0.1"
+whitenoise = "*"
+django-cors-headers = "*"
+
 [dev-packages]
 
 [requires]

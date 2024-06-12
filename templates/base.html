@@ -1,0 +1,61 @@
+<!-- FILEPATH: /home/zouss/zflix/templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cheese Page</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+
+		p {
+			text-align: center;
+			margin-top: 20px;
+		}
+
+		.container {
+			display: flex;
+			justify-content: center;
+			margin-top: 50px;
+		}
+
+		.container a {
+			margin: 0 10px;
+			text-decoration: none;
+			padding: 10px 20px;
+			border: 1px solid #000;
+			border-radius: 5px;
+			color: #000;
+		}
+
+		.container a:hover {
+			background-color: #000;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<h1>Welcome to the Cheese Page!</h1>
+	<p>Here's a cheesy message for you: Cheese is delicious!</p>
+	
+	<div class="container">
+		<a href="/logout">Logout</a>
+		<a href="/login">Login</a>
+		<a href="/register">Register</a>
+	</div>
+
+	<!-- BEGIN: Gaming Mechanism -->
+	<div class="container">
+		<!-- Add your gaming mechanism code here -->
+		<p>This is the gaming mechanism.</p>
+	</div>
+	<!-- END: Gaming Mechanism -->
+</body>
+</html>

@@ -129,11 +129,9 @@ show_genre_list = {
 
 @api_view(['GET'])
 def react_index(request):
-    movies = top_movies2()[:6]
-    series = top_series2()[:6]
-    grouped_movies = [movies[i:i+2] for i in range(0, len(movies), 2)]
-    grouped_shows = [series[i:i+2] for i in range(0, len(movies), 2)]
+    movies = top_movies2()[:2]
+    series = top_series2()[:2]
+    tops = movies + series
     return Response({
-        'movies': grouped_movies,
-        'series':grouped_shows,
+        'tops':tops
     })
